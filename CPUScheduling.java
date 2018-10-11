@@ -1,5 +1,6 @@
 // File CPUScheduling.java to simulate the cpu round robin scheduling
 
+
 class CPUScheduling
 {
     public static void main(String[] args)
@@ -15,7 +16,7 @@ class CPUScheduling
 		System.out.println
 		    ("<time-to-increment-level>: number of unit time before a process to increment its priority by 1 if this process does not get any CPU time during this time period."); 
 		System.out.println
-		    ("<simulation-time>: number of unit time for this simulation.");
+		    ("<simulation-time>: Amount of time that the simulation will run.");
 		System.out.println
 		    ("<process arrival rate>: the process arrival probability within each time unit.");
 		System.exit(1);
@@ -46,7 +47,6 @@ class CPUScheduling
 	for (int currentTime = 0; currentTime < simulationTime; currentTime++)
 	    {
 		System.out.format("second %3d: ", currentTime);
-		
 		boolean arrival = false;
 		// Check to see if there is any incoming new process.
 		if (pGenerator.query())
@@ -71,13 +71,13 @@ class CPUScheduling
 			    System.out.print("\t    ");
 			if (next.finish())
 			    {
-				System.out.print("    (Assign to JOB " + next.getArrivalTime() + ": finish, priority " + next.getPriority() + ")");
+				System.out.print("    (Assign to JOB " + next.getArrivalTime() + ": finished, priority = " + next.getPriority() + ")");
 				averager.addNumber(currentTime - 
 					       next.getArrivalTime() + 1);
 			    }
 			else
 			    {
-				System.out.print("    (Assign to JOB " + next.getArrivalTime() + ": timeRemaining " + next.getTimeRemaining() + ", priority " + next.getPriority() + ")");
+				System.out.print("    (Assign to JOB " + next.getArrivalTime() + ": Time Remaining = " + next.getTimeRemaining() + ", priority = " + next.getPriority() + ")");
 				next.resetTimeNotProcessed();
 				pqueue.enPQueue(next);
 			    }
